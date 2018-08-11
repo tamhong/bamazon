@@ -16,7 +16,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    console.log("conneced as id " + connection.threadId + "\n");
+    console.log("conneced as id " + connection.threadId + "\n Welcome to Bamazon! \n");
     readProducts();
 });
 
@@ -67,7 +67,8 @@ var order = function () {
                             console.log("Bye!")
                             connection.end();
                         } else {
-                            readProducts();
+                            console.log(table.toString());
+                            order();
                         }
                     });
 
@@ -86,8 +87,8 @@ var order = function () {
                           }
                         ],
                         function(error) {
+                            
                           if (error) throw err;
-                          console.log("New inventory: " + stock);
 
                         inquirer.prompt([{
                             type: "list",
@@ -99,14 +100,13 @@ var order = function () {
                                 console.log("Bye!")
                                 connection.end();
                             } else {
-                                readProducts();
+                                console.log(table.toString());
+                                order();
                             }
                         });
 
                         }
                       );
-
-
 
                 };
                 
