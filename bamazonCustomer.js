@@ -57,20 +57,7 @@ var order = function () {
                 if (stock < answers.number) {
                     console.log ("Sorry! We do not have sufficient stock to complete your order at this time.");
 
-                    inquirer.prompt([{
-                        type: "list",
-                        name: "endSession",
-                        message: "Would you like to select a different item?",
-                        choices: ["Yes", "No"]
-                    }]).then(function(answers) {
-                        if (answers.endSession === "No") {
-                            console.log("Bye!")
-                            connection.end();
-                        } else {
-                            console.log(table.toString());
-                            order();
-                        }
-                    });
+                    end();
 
                 } else {
                     console.log ("You owe $" + parseInt(price) * parseInt(answers.number) + ".00.");
@@ -90,20 +77,7 @@ var order = function () {
                             
                           if (error) throw err;
 
-                        inquirer.prompt([{
-                            type: "list",
-                            name: "endSession",
-                            message: "Would you like to make another purchase?",
-                            choices: ["Yes", "No"]
-                        }]).then(function(answers) {
-                            if (answers.endSession === "No") {
-                                console.log("Bye!")
-                                connection.end();
-                            } else {
-                                console.log(table.toString());
-                                order();
-                            }
-                        });
+                          end();
 
                         }
                       );
@@ -113,6 +87,25 @@ var order = function () {
             });
 
     })
+}
+
+var end = function () {
+
+    inquirer.prompt([{
+        type: "list",
+        name: "endSession",
+        message: "Would you like to select a different item?",
+        choices: ["Yes", "No"]
+    }]).then(function(answers) {
+        if (answers.endSession === "No") {
+            console.log("Bye!")
+            connection.end();
+        } else {
+            console.log(table.toString());
+            order();
+        }
+    });
+
 }
 
 
