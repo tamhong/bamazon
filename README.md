@@ -20,7 +20,7 @@ A mock store front node application which allows "customers" to "purchase" items
 
 ## Author
 * Tam Hong
-* UC Berkely Extension Full Stack Web Developer Bootcamp 2018
+* UC Berkeley Extension Full Stack Web Developer Bootcamp 2018
 * tam@tamhong.io
 
 
